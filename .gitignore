@@ -3,4 +3,4 @@ cmake-build-debug/
 CMakePresets.json
 
 
-*Zone.Indentifier
+*.Identifier
