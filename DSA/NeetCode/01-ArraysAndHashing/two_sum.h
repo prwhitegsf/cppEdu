@@ -2,9 +2,9 @@
 #define TWO_SUM_H
 
 #include <unordered_map>
-#import <unordered_map>
-#import <utility>+
-#import <vector>
+#include <unordered_map>
+#include <utility>
+#include <vector>
 
 // my solution
 inline std::pair<int,int> two_sum(const std::vector<int>& nums, const int target) {
