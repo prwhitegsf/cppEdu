@@ -6,11 +6,15 @@
 #include <string>
 #include <utility>
 
-inline std::vector<std::vector<std::string>> group_anagrams(const std::vector<std::string>& arr){
+using anagrams = std::vector<std::string>;
+using groups = std::vector<anagrams>;
 
-  std::unordered_map<std::string,std::vector<std::string>> res;
 
-  for (const std::string& str : arr) {
+inline groups group_anagrams(const anagrams& arr){
+
+  std::unordered_map<std::string,anagrams> res;
+
+  for (auto& str : arr) {
 
     // Make an array to hold the key
     std::vector<int> v_key(26,0);
@@ -21,24 +25,20 @@ inline std::vector<std::vector<std::string>> group_anagrams(const std::vector<st
 
     // make the array a string so it can be a key for unordered map
     // the other way would be towrite a custom hash function
-    std::string key = std::to_string(v_key[0]);
-    for (int i=1; i < 26; i++) {
-      key += ','+std::to_string(v_key[i]);
+    std::string key;
+    for (int count : v_key) {
+      key += ','+std::to_string(count);
     }
 
     // Add the string to this key
-    res[key].push_back(str);
+    res[key].emplace_back(str);
 
   }
 
-  std::vector<std::vector<std::string>> output;
+  groups output;
 
-  /*for (const std::pair<const std::vector<int>,std::vector<std::string>>& s : res) {
-    output.push_back(s.second);
-  }*/
-
-  for (const auto& [key, value] : res) {
-    output.push_back((value));
+  for(auto& ana: res) {
+    output.push_back((ana.second));
   }
 
   return output;

@@ -3,7 +3,7 @@ project(cppEdu)
 
 set(CMAKE_CXX_STANDARD 23)
 SET(CMAKE_BUILD_TYPE Debug)
-add_executable(edu DSA/DataStructures/BST/main.cpp)
+add_executable(edu DSA/NeetCode/01-ArraysAndHashing/main.cpp)
 
 #find_package(GTest CONFIG REQUIRED)
 #target_link_libraries(edu GTest::gtest GTest::gtest_main)

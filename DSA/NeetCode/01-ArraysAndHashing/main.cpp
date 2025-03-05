@@ -2,7 +2,7 @@
 
 //#include "valid_anagram.h"
 #include "two_sum.h"
-//#include "group_anagram.h"
+#include "group_anagram.h"
 #include "TopKFreq.h"
 
 
@@ -25,22 +25,23 @@ int main() {
     // std::cout << res.first << ", " <<res.second << std::endl;
 
     // Group anagram
-    /*std::vector<std::string> ga{"act","pots","tops","cat","stop","hat"};
+    std::vector<std::string> ga{"act","pots","tops","cat","stop","hat"};
     auto output = group_anagrams(ga);
     for (const auto& res : output){
         for (const auto &str: res)
             std::cout << str + ',';
 
         std::cout << '\n';
-    }*/
+    }
 
     // Top K Frequency
+    /*
     const std::vector<int> vec {1,2,3,3,5,6,5};
 
     const auto& output = topKFreq(vec,2);
     for (const auto& res : output){
         std::cout << res <<std::endl;
-    }
+    }*/
 
     return 0;
 }
