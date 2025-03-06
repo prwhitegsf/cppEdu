@@ -4,44 +4,64 @@
 #include <vector>
 #include <unordered_map>
 #include <iostream>
+#include <algorithm>
+
+using IntVec = std::vector<int>;
+
+inline void print_vec(IntVec & vec){
+    if (vec.empty())
+        return;
+
+    for (int v : vec)
+        std::cout << "Vec: " << v <<std::endl;
+
+}
 
 
-inline std::vector<int> topKFreq(const std::vector<int>& nums, int k){
+inline IntVec topKFreq(IntVec & nums, int k){
 
     // Make a hash table with each value and it's freq
     std::unordered_map<int, int> count_table;
 
     for (int num : nums){
         if(!count_table.contains(num))
-            count_table[num] = 1;
+            count_table.insert({num, 1});
         else
             count_table[num] += 1;
     }
 
     // Make a vector of buckets
     // the index corresponds to the frequency
-    std::vector<std::vector<int>> buckets(nums.size());
+    std::vector<IntVec> buckets(nums.size());
 
     // then fill it
-    for (const auto& [key, value] : count_table){
+    for (auto& [key, value] : count_table){
         buckets[value].push_back(key);
     }
 
-    std::vector<int> result;
+    IntVec result;
+    result.reserve(k);
 
-    for (auto i = buckets.rbegin(); i!= buckets.rend();i++){
-        auto& vec = *i;
-        if (!vec.empty()){
-            for (const int v : vec){
-                result.push_back((v));
+    for(auto vec = buckets.rbegin();
+        vec != buckets.rend();
+        vec++)
+    {
 
-                if (result.size() == k)
-                    return result;
-            }
-        }
+        if(vec->empty())
+            continue;
+
+        for (auto v : *vec)
+            result.push_back(v);
+
+        if (result.size() == k)
+            break;
+
+
     }
 
 
+
+    return result;
 
 }
 

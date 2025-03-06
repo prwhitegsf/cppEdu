@@ -1,47 +1,54 @@
 #include <iostream>
 
-//#include "valid_anagram.h"
-#include "two_sum.h"
+// #include "contains_dupes.h"
+// #include "valid_anagram.h"
+// #include "two_sum.h"
 #include "group_anagram.h"
+#include <ranges>
+#include <algorithm>
 #include "TopKFreq.h"
 
 
-
+using namespace std;
 
 int main() {
     // Contains Dupes
-    // std::vector<int> vec {1,2,3,3,5,6};
-
+   /* vector<int> vec {1,2,3,4,1,6};
+    cout << "Vector has dupes: " << contains_duplicates(vec) << endl;*/
 
     // Valid Anagram
-    // std::string s = "racecar";
-    // std::string t = "carrace";
-    // std::cout << nc1_isAnagram(s,t) << std::endl;
+    /*string s = "racecar";
+    string t = "catrace";
+    cout << "is anagram: " << nc3_isAnagram(s,t) << endl;*/
+
+
 
     // Two Sum
-    // std::vector<int> nums{3,5,7,4,};
-    // int target{11};
-    // std::pair res = two_sum(nums, target);
-    // std::cout << res.first << ", " <<res.second << std::endl;
-
+   /* std::vector<int> nums{3,5,7,4,};
+    int target{8};
+    std::pair res = two_sum_ranges(nums, target);
+    std::cout << "Two Sum Indices: "<< res.first << ", " <<res.second << std::endl;
+*/
     // Group anagram
-    std::vector<std::string> ga{"act","pots","tops","cat","stop","hat"};
-    auto output = group_anagrams(ga);
+    /*std::vector<std::string> ga{"act","pots","tops","cat","stop","hat"};
+    auto output = group_anagrams2(ga);
     for (const auto& res : output){
         for (const auto &str: res)
             std::cout << str + ',';
 
         std::cout << '\n';
     }
+*/
+
 
     // Top K Frequency
-    /*
-    const std::vector<int> vec {1,2,3,3,5,6,5};
+
+    std::vector<int> vec {1,2,3,3,5,6,5};
 
     const auto& output = topKFreq(vec,2);
     for (const auto& res : output){
         std::cout << res <<std::endl;
-    }*/
+    }
 
     return 0;
 }
