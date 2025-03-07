@@ -26,7 +26,7 @@ inline std::vector<int> two_sum_2(const std::vector<int>& nums, const int target
     int lhs = 0;
     int rhs = sz - 1;
 
-    std::vector<int> result{};
+    std::vector<int> result(2);
 
     while (lhs < rhs){
 

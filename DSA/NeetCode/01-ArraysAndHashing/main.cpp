@@ -50,5 +50,7 @@ int main() {
         std::cout << res <<std::endl;
     }
 
+    topKFreq2(vec,2);
+
     return 0;
 }

@@ -3,6 +3,8 @@
 
 
 #include <string>
+#include <ranges>
+#include <iostream>
 
 inline bool valid_palindrome(const std::string& s){
 
@@ -37,7 +39,6 @@ inline bool valid_palindrome(const std::string& s){
 
 
 }
-
 
 
 
