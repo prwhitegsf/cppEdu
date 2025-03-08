@@ -1,7 +1,7 @@
 #include <iostream>
 
 // #include "contains_dupes.h"
-// #include "valid_anagram.h"
+#include "valid_anagram.h"
 // #include "two_sum.h"
 #include "group_anagram.h"
 #include <ranges>
@@ -17,9 +17,9 @@ int main() {
     cout << "Vector has dupes: " << contains_duplicates(vec) << endl;*/
 
     // Valid Anagram
-    /*string s = "racecar";
-    string t = "catrace";
-    cout << "is anagram: " << nc3_isAnagram(s,t) << endl;*/
+    string s = "racecar";
+    string t = "carrace";
+    cout << "is anagram: " << isPermutation(s,t) << endl;
 
 
 
@@ -43,14 +43,14 @@ int main() {
 
     // Top K Frequency
 
-    std::vector<int> vec {1,2,3,3,5,6,5};
+    /*std::vector<int> vec {1,2,3,3,5,6,5};
 
     const auto& output = topKFreq(vec,2);
     for (const auto& res : output){
         std::cout << res <<std::endl;
     }
 
-    topKFreq2(vec,2);
+    topKFreq2(vec,2);*/
 
     return 0;
 }

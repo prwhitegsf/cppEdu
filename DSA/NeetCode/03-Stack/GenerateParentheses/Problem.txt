@@ -1,0 +1,36 @@
+Problem:
+
+You are given an integer n.
+
+Return all well-formed parentheses strings that you can generate with n pairs of parentheses.
+
+Example 1:
+
+Input: n = 1
+
+Output: ["()"]
+
+Example 2:
+
+Input: n = 3
+
+Output: ["((()))","(()())","(())()","()(())","()()()"]
+
+You may return the answer in any order.
+
+Constraints:
+
+1 <= n <= 7
+
+
+--------------------------------------------------------------
+
+Solution:
+
+What we know:
+
+The number of permutations
+Each permutation has the property
+- num open == num closed == number of permutations
+
+Every permutation starts with an open parentheses

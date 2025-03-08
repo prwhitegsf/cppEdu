@@ -6,6 +6,7 @@
 #include <string_view>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 
 // My solution
@@ -96,4 +97,12 @@ inline bool nc3_isAnagram(std::string_view s, std::string_view t) {
     }
     return true;
 }
+
+
+// with is permutation
+inline bool isPermutation(const std::string& s, const std::string& t){
+    return std::is_permutation(s.begin(),s.end(),t.begin());
+}
+
+
 #endif //VALID_ANAGRAM_H

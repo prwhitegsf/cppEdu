@@ -34,7 +34,7 @@ inline bool ValidParentheses(const std::string& s){
             stack.push(c);
     }
 
-    return stack.empty() ? true: false;
+    return stack.empty();
 
 }
 

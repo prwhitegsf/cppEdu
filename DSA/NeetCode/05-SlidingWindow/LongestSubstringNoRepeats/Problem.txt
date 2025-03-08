@@ -1,0 +1,39 @@
+Longest Substring Without Repeating Characters - Medium
+
+Given a string s, find the length of the longest substring without duplicate characters.
+
+A substring is a contiguous sequence of characters within a string.
+
+Example 1:
+
+Input: s = "zxyzxyz"
+
+Output: 3
+Explanation: The string "xyz" is the longest without duplicate characters.
+
+Example 2:
+
+Input: s = "xxxx"
+
+Output: 1
+Constraints:
+
+0 <= s.length <= 1000
+s may consist of printable ASCII characters.
+
+------------------------------------------------
+
+Known: input string
+
+Outer loop:
+
+runs from beg to end, counting chars until it finds a repeat
+when it finds a repeated char:
+    - check if it's in the hash
+    - if so go to it's index + 1
+    - and start loop again
+
+
+
+it goes to that char's index + 1 and starts counting aga
+
