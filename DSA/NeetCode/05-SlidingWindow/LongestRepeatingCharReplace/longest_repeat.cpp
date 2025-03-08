@@ -15,6 +15,8 @@ using HT = std::unordered_map<char,std::vector<int>>;
 // So we iterate over the vectors tracking how many k's we use if we were to fill in the non-repeats
 // ToDo: Edit while loop to keep going after k >= 0 is hit, but clear the current count
 // ugh and I'd need to go back to the last start + 1 like in longest substring
+// Also a version where I write the differences between indices to the vectors would simplify
+
 int longest_repeat(std::string& str, int k){
 
     if(k == str.size())

@@ -22,8 +22,6 @@ int MaxProfit(std::vector<int> prices){
 
     return max_profit;
 
-
-
 }
 
 
