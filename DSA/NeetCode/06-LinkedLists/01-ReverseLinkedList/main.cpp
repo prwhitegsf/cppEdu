@@ -25,8 +25,14 @@ ListNode* reverseList(ListNode* head) {
 
     while(curr_node != nullptr){
 
+        // next node lives at curr_node->next
         ListNode* next_node = curr_node->next;
+
+        // now that's something we can refer to
+        // turn curr_node->next around to point to prev
         curr_node->next = prev_node;
+
+        // now this step moves prev and curr to their respective next nodes
         prev_node = curr_node;
         curr_node = next_node;
     }

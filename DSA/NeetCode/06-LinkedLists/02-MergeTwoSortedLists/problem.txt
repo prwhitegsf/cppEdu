@@ -1,0 +1,60 @@
+Merge Two Sorted Linked Lists - Easy
+
+You are given the heads of two sorted linked lists list1 and list2.
+
+Merge the two lists into one sorted linked list and return the head of the new sorted linked list.
+
+The new list should be made up of nodes from list1 and list2.
+
+Example 1:
+Input: list1 = [1,2,4], list2 = [1,3,5]
+Output: [1,1,2,3,4,5]
+
+
+Example 2:
+Input: list1 = [], list2 = [1,2]
+Output: [1,2]
+
+
+Example 3:
+Input: list1 = [], list2 = []
+Output: []
+
+
+
+Constraints:
+
+0 <= The length of the each list <= 100.
+-100 <= Node.val <= 100
+
+--------
+
+
+
+If both lists are empty
+    - return empty
+
+If one of the lists is empty
+    - return the non-empty
+
+Can see a world where there's a while loop to contain both of those conditions
+
+Start with the list with the lower value at the head
+iterate over that list, comparing to the fixed value in the other list
+until we reach a where list1's element > than the fixed element in list 2
+
+At that point, iterate over list 2 until we get a value greater than
+where we left off on the other side
+
+In fact you can think of it as two lists:
+    - a primary list (with the lower head value)
+        - the head of this list is what we will return
+    - an insert list (with the larger head value)
+
+So the outer loop:
+    - primary list
+
+And inner loop
+    - when insert list value is < primary list
+
+Time Complexity: O(n + m)

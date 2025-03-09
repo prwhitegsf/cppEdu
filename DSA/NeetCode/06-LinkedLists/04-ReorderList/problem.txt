@@ -1,0 +1,70 @@
+Reorder Linked List - Medium
+
+You are given the head of a singly linked-list.
+
+The positions of a linked list of length = 7 for example, can intially be represented as:
+
+[0, 1, 2, 3, 4, 5, 6]
+
+Reorder the nodes of the linked list to be in the following order:
+
+[0, 6, 1, 5, 2, 4, 3]
+
+Notice that in the general case for a list of length = n the nodes are reordered to be in the following order:
+
+[0, n-1, 1, n-2, 2, n-3, ...]
+
+You may not modify the values in the list's nodes, but instead you must reorder the nodes themselves.
+
+Example 1:
+Input: head = [2,4,6,8]
+Output: [2,8,4,6]
+
+Example 2:
+Input: head = [2,4,6,8,10]
+Output: [2,10,4,8,6]
+
+Constraints:
+
+    1 <= Length of the list <= 1000.
+    1 <= Node.val <= 1000
+
+----
+
+So we want to implement an algo for this pattern
+[0, n-1, 1, n-2, 2, n-3, ...]
+
+in terms of indices we can think of it as
+
+0, last - 1, 1, last - 2, 2
+
+
+So, really this looks a lot like a two pointer problem,
+where we're starting from the ends and working our way
+towards the middle.
+
+However, that tactic requires random access
+
+Also, we're only given the head node, so we don't know how long the list is
+
+---
+
+Given that, maybe this is another job for the hash table { index : pointer }
+or even an array where indices correspond to LL seq numbers
+
+
+Loop through the list
+    - push each pointer to a vector
+
+Then you really can use the two pointer solution
+While i < vec.size//2 (or something)
+    - lhs = vec[i], rhs = vec[size-1-i]
+    - lhs->next = rhs;
+
+---
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+
+
+
