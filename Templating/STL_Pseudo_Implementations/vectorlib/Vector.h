@@ -1,6 +1,8 @@
 #ifndef STL_IMPLEMENTATIONS_VECTOR_H
 #define STL_IMPLEMENTATIONS_VECTOR_H
 
+#include <iostream>
+
 #include <memory>   // std::allocator
 #include <cstddef>  // std::size_t, std::ptr_diff_t
 #include <iterator> // std::distance
@@ -10,7 +12,7 @@
 
 
 namespace vec {
-
+                            // if a custom allocator is not provided, use the default
     template <class T, class Allocator = std::allocator<T>>
     class Vector {
 
@@ -42,10 +44,27 @@ namespace vec {
         explicit Vector(const allocator_type& alloc);
 
         // Fill Constructors
+        // I don't quite get where allocator_type() is coming from
+        // in the using section above we're using allocator_type for the input/default allocator
+        // which means it should be std::allocator<T> assuming default
+        // in the docs for std::allocator is do
+
         explicit Vector(const size_type numOfElements, const allocator_type& alloc=allocator_type());
         Vector(size_type numOfElements, const value_type& fillValue, const allocator_type& alloc=allocator_type());
 
+        // Range Constructor
+        template<class InputIterator>
+        Vector(InputIterator first, InputIterator last, const allocator_type& alloc=allocator_type());
+
+
+        void copyRangeForward(iterator from, iterator to, const_reference value);
+
+
         ~Vector() noexcept(std::is_nothrow_destructible_v<value_type>);  // Destructor
+
+        // Operators -------------------------------------------------------------------
+        reference operator[](const size_type position){ return data[position]; }
+
 
         // Size and capacity checks -----------------------------------------------------
 
@@ -123,7 +142,7 @@ Vector<T, Allocator>::Vector(const allocator_type& alloc)
 {}
 
 
-// Fill Constructor
+// Fill Constructor - no value
 template<class T, class Allocator>
 Vector<T, Allocator>::Vector(const size_type numOfElements, const allocator_type& alloc)
 : sz(0), cap(nextPowerOf2(numOfElements)), data(nullptr), allocator(alloc)
@@ -144,6 +163,74 @@ Vector<T, Allocator>::Vector(const size_type numOfElements, const allocator_type
         destroyPointer(data);
     }
 }
+
+
+// Fill constructor with fill value
+template<class T, class Allocator>
+Vector<T,Allocator>::Vector(const size_type numOfElements, const_reference fillValue, const allocator_type& alloc)
+: sz(0),cap(nextPowerOf2(numOfElements)),data(nullptr),allocator(alloc)
+{
+
+
+
+    try{
+        // make space
+        data = std::allocator_traits<Allocator>::allocate(allocator,cap);
+
+        // construct value
+        for(; sz < numOfElements; ++sz)
+            std::allocator_traits<Allocator>::construct(allocator, data+sz,fillValue);
+
+    }
+    catch(...){
+        destroyRange(begin(), end());
+        destroyPointer(data);
+        throw;
+    }
+}
+
+
+// Range Constructor
+template<class T, class Allocator>
+template<class InputIterator>
+Vector<T, Allocator>::Vector(InputIterator first, InputIterator last, const allocator_type& alloc)
+: sz(0), data(nullptr), allocator(alloc)
+{
+
+    const difference_type numOfElements = std::distance(first, last);
+
+    cap = nextPowerOf2(numOfElements);
+
+    copyRangeForward(first, last, data);
+
+    try{
+        // Allocate space for incoming elements
+        // Construction will take place at each element insertion
+        data = std::allocator_traits<Allocator>::allocate(allocator, cap);
+
+        // Copy construct the elements at predetermined locations
+        for(; sz < numOfElements; ++sz)
+            std::allocator_traits<Allocator>::construct(allocator, data + sz, *(first + sz));
+    }catch(...){
+        destroyRange(begin(), end());
+        destroyPointer(data);
+
+        throw;
+    }
+
+}
+
+template<class T, class Allocator>
+void Vector<T, Allocator>::copyRangeForward(iterator from, iterator to, const_reference value)
+{
+
+    for(; from!= to;++from)
+        std::allocator_traits<Allocator>::construct(allocator, from, value);
+
+
+
+}
+
 
 
 
